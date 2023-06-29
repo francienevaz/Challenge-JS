@@ -58,6 +58,42 @@
 	.search button img {
 	      width: 16px;
 	}
+	.weather {
+	     display: none;
+	}
+	.weather-icon {
+	     width: 170px;
+	     margin-top: 30px;
+	}
+	.weather h1 {
+	     font-size: 80px;
+	     font-weight: 500;
+	}
+	.weather h2 {
+	     font-size: 45px;
+	     font-weight: 400;
+	     margin-top: -10px;
+	}
+	.details {
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    padding: 0 20px;
+	    margin-top: 50px;		
+	}
+	.col {
+	    display: flex;
+	    align-items: center;
+	    text-align: left;
+	}
+	.col img {
+	    width: 40px;
+	    margin-right: 10px;
+	}
+	.humidity, wind {
+	    font-size: 28px;
+	    margin-top: -6px;
+	}
 
     </style>
 
@@ -93,7 +129,47 @@
 
     </div>
     <script>
-    </script>
+	const apiKey = "";
+	const apiUrl = "https://api.openweathermap.org/data/2.5/weather?inits=metric&q=";
+	
+	const searchBox = document.querySelector(".search input");
+	const searchBtn = document.querySelector(".search button");
+	const weatherIcon = document.querySelector(".weather-icon");
 
+	async function checkWeather(city) {
+	         const response = await fetch(apiUrl + city + `&appid=${apiKey}`)
+	         let data = await response.json();
+	         console.log(data);
+
+	         document.querySelector(".city").innerHTML = data.name;
+	         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+	         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+	         document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+	        if (data.weather[0].main == "Clouds") {
+		weatherIcon.src = "img/clouds.png"
+	        } else if (data.weather[0].main == "Clear") {
+		weatherIcon.src = "img/clear.png"
+		} else if (data.weather[0].main == "Rain") {
+		            weatherIcon.src = "img/rain.png"
+		} else if (data.weather[0].main == "Drizzle") {
+		            weatherIcon.src = "img/drizzle.png"
+		}else if (data.weather[0].main == "Mist") {
+		            weatherIcon.src = "img/mist.png"
+		}else if (data.weather[0].main == "Snow") {
+		            weatherIcon.src = "img/snow.png"
+		}
+		
+		document.querySelector(".weather").style.display = "block";
+	}
+	
+	searchBtn.addEventListener("click", () => {
+
+	checkWeather(searchBox.value)
+})	
+
+	
+    </script>
+	
 </body>
 </html>
