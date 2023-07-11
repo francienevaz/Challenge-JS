@@ -41,8 +41,12 @@ nav .btn {
     border-radius: 20px;
 }
 
+.content-background {
+    display: flex;
+}
+
 .content {
-    margin-top: 12%;
+    margin-top: 10%;    
 }
 
 .content h1 {
@@ -67,6 +71,15 @@ nav .btn {
     text-decoration: none;
     padding: 15px 30px;
     border-radius: 30px;
+}
+
+.background {
+    margin-top: 10%;
+}
+
+.background img{
+
+    width: 80%;
 }
 
 .coin-list {
