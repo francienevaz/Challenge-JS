@@ -1,4 +1,5 @@
 let contentP = document.querySelector("#pt");
+// let contentH1 = document.querySelector(".content h1");
 let btn = document.querySelector(".btn")
 
 function changeLang (lang) {
@@ -22,10 +23,9 @@ if (window.location.hash) {
   
     if (window.location.hash == "#pt") {
       contentP.textContent = language.pt.p;
+    } else if (window.location.hash == "#en") {
+        contentP.textContent = language.en.p;
     }
 
-    btn.addEventListener("dbclick", ()=> {
-        changeLang('en')
-    })
   }
 
