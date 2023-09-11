@@ -6,4 +6,5 @@
 *  Generate Random Password
 *  Mini Calendar
 *  Music Player
+*  Show password strength
 *  Weather App
